@@ -1,4 +1,4 @@
-require File.expand_path("../lib/convorer", __FILE__)
+require File.expand_path("../lib/minigen", __FILE__)
 
 Gem::Specification.new do |s|
 
@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version           = Minigen::VERSION
 
   s.summary     = "just another projects generator"
-  s.description = "a project generator that creates a simple ruby library tree"
+  s.description = "a project generator that creates a simple ruby library skel"
 
   s.authors  = ["Ermenegildo Fiorito"]
   s.homepage = 'http://github.com/fyskij/minigen#readme'
