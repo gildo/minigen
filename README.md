@@ -47,6 +47,13 @@ This contains the supercool [defunkt's](http://twitter.com/defunkt) [test/spec/m
 a failing test
 
 
+synopsis
+--------
+
+    $: mgen mycoolproject
+
+    >:  - Generating your project: mycoolproject
+
 license
 -------
 
