@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+
+require 'minigen'
+
+Minigen::Generator.new(ARGV[0])
