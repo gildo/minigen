@@ -18,7 +18,7 @@ module Minigen
 
     # Private: Copies the default template to @name dir
     def copy!
-      puts " - \033[32mCopying\033[0m the default template to #{@name}"
+      puts " - \033[32mGenerating\033[0m your project: #{@name}"
       Dir.mkdir @name
       FileUtils.cp_r( Dir.glob(File.join(LIBDIR, 'template/*')), @name )
       Dir.chdir @name
@@ -45,6 +45,7 @@ module Minigen
       o = File.read(file).gsub! /#{old}/, new
       n = File.new(file, "w+")
       n.puts(o)
+      n.close
       return true
     end
 
