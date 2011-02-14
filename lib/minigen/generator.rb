@@ -9,7 +9,7 @@ module Minigen
       @name = @options[:name.downcase]
 
       # The test suite
-      @test = @options[:test]
+      @options.key?(:test)? @test = @options[:test] : @test = "shoulda"
 
 
       # Checks if a folder exists with the name @name
@@ -32,10 +32,10 @@ module Minigen
       Dir.mkdir @name
 
       # Copies the base template files (e.g. readme, gemspec, etc)
-      FileUtils.cp_r Dir.glob File.join LIBDIR, "templates/base/*", @name
+      FileUtils.cp_r(Dir.glob(File.join(LIBDIR, "templates/base/*")), @name)
 
       # Copies the test suite ( see @options[:test] )
-      FileUtils.cp_r Dir.glob File.join LIBDIR, "templates/#{@test}/*", "#{@name}/test"
+      FileUtils.cp_r(Dir.glob(File.join(LIBDIR, "templates/#{@test}/*")), "#{@name}/test/")
 
       gnr!
     end
@@ -50,7 +50,7 @@ module Minigen
       Dir.chdir @name
       Dir.glob("**/*.{rb,md,gemspec}").each {|f| ore f, "project", @name}
       Dir.glob("**/*.{rb,md,gemspec}").each {|f| ore f, "Project", @name.capitalize}
-      File.rename "test/project_test.rb", "test/#{@name}_test.rb"
+      File.rename "test/test_project.rb", "test/test_#{@name}.rb"
       File.rename "lib/project.rb", "lib/#{@name}.rb"
       File.rename "project.gemspec", "#{@name}.gemspec"
       puts " - done!"
@@ -76,9 +76,7 @@ module Minigen
       return true
     end
 
-
-
-    private :copy!, :ore
+    private :copy!, :gnr!, :ore
 
   end #Generator
 

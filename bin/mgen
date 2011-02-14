@@ -3,4 +3,4 @@ $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 
 require 'minigen'
 
-Minigen::Generator.new(ARGV[0])
+Minigen::Generator.new({:name => ARGV[0], :test => ARGV[1]})
