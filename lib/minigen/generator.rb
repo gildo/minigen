@@ -1,5 +1,8 @@
 module Minigen
 
+  # Really needed
+  LIBDIR = File.dirname(__FILE__)
+
   # Various methods to create the project skel
   class Generator
 
