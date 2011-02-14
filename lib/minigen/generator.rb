@@ -11,6 +11,8 @@ module Minigen
       # if false, exits with a message
       abort "A folder with that name already exists" if File.directory? @name
 
+      puts " - \033[32mGenerating\033[0m your project: #{@name}"
+
       # Runs the method that copies the template
       copy!
 
@@ -18,7 +20,6 @@ module Minigen
 
     # Private: Copies the default template to @name dir
     def copy!
-      puts " - \033[32mGenerating\033[0m your project: #{@name}"
       Dir.mkdir @name
       FileUtils.cp_r( Dir.glob(File.join(LIBDIR, 'template/*')), @name )
       gnr!
@@ -37,6 +38,7 @@ module Minigen
       File.rename "test/project_test.rb", "test/#{@name}_test.rb"
       File.rename "lib/project.rb", "lib/#{@name}.rb"
       File.rename "project.gemspec", "#{@name}.gemspec"
+      puts " - done!"
     end
 
     # Private: Opens, Reads and Edits a file
