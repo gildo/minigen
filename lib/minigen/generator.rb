@@ -6,11 +6,10 @@ module Minigen
     # Public: Initialize a new Project
     def initialize options = {}
       @options = options
-      @name = @options[:name.downcase]
+      @name = @options[:name].downcase
 
       # The test suite
-      @options.key?(:test)? @test = @options[:test] : @test = "shoulda"
-
+      @test = @options[:test]
 
       # Checks if a folder exists with the name @name
       # if false, exits with a message
@@ -69,7 +68,8 @@ module Minigen
     #
     # Returns True if everything went well :D
     def ore file, old, new
-      o = File.read(file).gsub! /#{old}/, new
+      o = File.read(file)
+      o.gsub! /#{old}/, new
       n = File.new(file, "w+")
       n.puts(o)
       n.close
