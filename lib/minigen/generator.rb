@@ -21,6 +21,16 @@ module Minigen
       puts " - \033[32mGenerating\033[0m your project: #{@name}"
       Dir.mkdir @name
       FileUtils.cp_r( Dir.glob(File.join(LIBDIR, 'template/*')), @name )
+      gnr!
+    end
+
+    # Private: gsub'n'rename
+    #   Joins the new project directory,
+    #   gsubs the content of all files with the new project name
+    #   'nd renames all
+    #
+    # Returns nothing
+    def gnr!
       Dir.chdir @name
       Dir.glob("**/*.{rb,md,gemspec}").each {|f| ore f, "project", @name}
       Dir.glob("**/*.{rb,md,gemspec}").each {|f| ore f, "Project", @name.capitalize}
