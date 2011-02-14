@@ -40,7 +40,11 @@ a simple, markdown formatted, readme that contains some essential points (see pa
 
 ### test/test_helper.rb
 
-This contains the supercool [defunkt's](http://twitter.com/defunkt) [test/spec/mini](https://gist.github.com/307649)
+For now supports only two test suites:
+
+* [Shoulda](https://github.com/thoughtbot/shoulda)
+
+* the **supercool** [defunkt's](http://github.com/defunkt) [test/spec/mini](https://gist.github.com/307649)
 
 ### test/project_test.rb
 
@@ -50,9 +54,17 @@ a failing test
 synopsis
 --------
 
-    $: mgen mycoolproject
+This command _generates_ a _new project_ using **shoulda** as test suite.
+
+    $: mgen mycoolproject shoulda
 
     >:  - Generating your project: mycoolproject
+
+If you want **test/spec/mini**:
+
+    $: mgen mynewproject tsm
+
+** enjoy! **
 
 license
 -------
