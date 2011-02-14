@@ -4,8 +4,13 @@ module Minigen
   class Generator
 
     # Public: Initialize a new Project
-    def initialize name
-      @name = name.downcase
+    def initialize options = {}
+      @options = options
+      @name = @options[:name.downcase]
+
+      # The test suite
+      @test = @options[:test]
+
 
       # Checks if a folder exists with the name @name
       # if false, exits with a message
@@ -18,10 +23,20 @@ module Minigen
 
     end
 
-    # Private: Copies the default template to @name dir
+    # Private: Copies the default template to @name dir,
+    # the chosen test suite, and runs gsub'n'rename
+    #
+    # Returns nothing
     def copy!
+      # Create the project diretory
       Dir.mkdir @name
-      FileUtils.cp_r( Dir.glob(File.join(LIBDIR, 'template/*')), @name )
+
+      # Copies the base template files (e.g. readme, gemspec, etc)
+      FileUtils.cp_r Dir.glob File.join LIBDIR, "templates/base/*", @name
+
+      # Copies the test suite ( see @options[:test] )
+      FileUtils.cp_r Dir.glob File.join LIBDIR, "templates/#{@test}/*", "#{@name}/test"
+
       gnr!
     end
 

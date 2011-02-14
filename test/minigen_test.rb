@@ -26,4 +26,8 @@ context "Minigen" do
       assert ref "#{@project}.gemspec" @project.to_s
     end
 
+    teardown do
+      FileUtils.rm_rf(@project)
+    end
+  end
 end
