@@ -7,6 +7,7 @@ module Minigen
     def initialize options = {}
       @options = options
       @name = @options[:name].downcase
+      @ccname = @options[:name]
 
       # The test suite, abort if empty
       # Note: this is stupid
@@ -53,7 +54,7 @@ module Minigen
     def gnr!
       Dir.chdir @name
       Dir.glob("**/*.{rb,md,gemspec}").each {|f| ore f, "project", @name}
-      Dir.glob("**/*.{rb,md,gemspec}").each {|f| ore f, "Project", @name.capitalize}
+      Dir.glob("**/*.{rb,md,gemspec}").each {|f| ore f, "Project", @ccname.capitalize}
       File.rename "test/test_project.rb", "test/test_#{@name}.rb"
       File.rename "lib/project.rb", "lib/#{@name}.rb"
       File.rename "project.gemspec", "#{@name}.gemspec"
